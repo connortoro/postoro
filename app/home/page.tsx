@@ -13,10 +13,10 @@ export default async function Page() {
   const posts = await getAllPosts()
 
   return (
-    <div className='flex flex-col items-center justify-center mr-[5rem]'>
-      {posts.map((post) => {
+    <div className='flex flex-col items-start justify-center ml-[8rem]'>
+      {posts?.map((post) => {
         return(
-          <Post post={post}/>
+          <Post post={post} key={post.id}/>
         )
       })}
     </div>

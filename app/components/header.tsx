@@ -3,8 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default async function Header() {
-    const { isAuthenticated, getUser } = getKindeServerSession()
-    const authenticated = await isAuthenticated()
+    const {  getUser } = getKindeServerSession()
     const user = await getUser()
 
     return (
@@ -13,10 +12,10 @@ export default async function Header() {
                 <div className="font-bold flex items-center gap-x-4 text-xl custom-underline text-neutral-200">Wow App</div>
             </Link>
 
-            {authenticated &&
+            {user &&
             <>
                 <LogoutLink className="ml-auto">Logout</LogoutLink>
-                <Image src={user?.picture || ""} alt="pfp" width={30} height={30} className="ml-[1.5rem] rounded-[9px]"></Image>
+                <Image src={user?.picture || ""} alt="pfp" width={40} height={40} className="ml-[1.5rem] rounded-full"></Image>
             </>
             }
         </header>

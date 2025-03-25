@@ -14,14 +14,29 @@ datasource db {
 }
 
 model User {
-  username String @id
-  id String @unique
+  id String @id
+  username String @unique
   pic String?
+  posts Post[]
+  likes Like[]
 }
 
 model Post {
   id Int @id @default(autoincrement())
-  title String
   body String
-  username String
+  userId String
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  likes Like[]
+}
+
+model Like {
+  id Int @id @default(autoincrement())
+  postId Int
+  userId String
+  post Post @relation(fields: [postId], references: [id], onDelete: Cascade)
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, postId])
+
 }

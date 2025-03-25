@@ -4,10 +4,10 @@ import { redirect } from "next/navigation";
 export default async function Home() {
 
   //Auth Check
-  const { isAuthenticated } = getKindeServerSession()
-  if(await isAuthenticated()) {
-    redirect("/home")
-  }
+  // const { isAuthenticated } = getKindeServerSession()
+  // if(await isAuthenticated()) {
+  //   redirect("/home")
+  // }
 
 
   return (

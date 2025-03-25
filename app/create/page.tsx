@@ -1,8 +1,7 @@
 import React from 'react'
 import { getKindeServerSession } from '@kinde-oss/kinde-auth-nextjs/server'
 import { redirect } from 'next/navigation'
-import { getAllPosts } from '../actions/posts'
-import Post from '../components/post'
+import PostForm from '../components/post-form'
 
 export default async function Page() {
   // Auth Check
@@ -13,7 +12,8 @@ export default async function Page() {
 
   return (
     <div className='flex flex-col items-center justify-center mr-[5rem]'>
-      asdf
+      <h2 className='my-[2rem] text-xl font-bold'>Create post</h2>
+      <PostForm/>
     </div>
   )
 }

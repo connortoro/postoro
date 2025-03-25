@@ -14,7 +14,7 @@ export async function changeUsername(username: string) {
   const existingUser = await prisma.user.findUnique({ where: {username: username} })
   if(existingUser) {
     return {
-      status: 'taken'
+      status: 'failure'
     }
   }
 
@@ -43,5 +43,5 @@ export async function changeUsername(username: string) {
   return {
     status: 'success'
   }
-  
+
 }

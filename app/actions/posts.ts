@@ -12,11 +12,26 @@ export async function getAllPosts() {
         redirect("/api/auth/login")
     }
 
-    const posts = await prisma.post.findMany()
+    const posts = await prisma.post.findMany({
+        include: {
+            user: {
+                select: {
+                    username: true,
+                    pic: true,
+                }
+            }
+        },
+        orderBy: {
+            createdAt: 'desc'
+        }
+    })
+
     return posts
 }
 
-export async function addPost(formdata: FormData) {
+
+
+export async function addPost(body: string) {
 
     // Auth Check
     const { isAuthenticated, getUser } = getKindeServerSession()
@@ -25,18 +40,32 @@ export async function addPost(formdata: FormData) {
     }
 
     const user = await getUser()
+    if(!user) {
+        return {
+            status: "failure"
+        }
+    }
 
-    const userId = user?.id || ""
-    const title = formdata.get("title") as string;
-    const body = formdata.get("body") as string;
+    const dbUser = await prisma.user.findUnique({
+        where: {
+            id: user.id
+        }
+    })
+    if(!dbUser) {
+        return {
+            status: "failure"
+        }
+    }
+
 
     await prisma.post.create( {
         data: {
-            userId,
-            title,
+            userId: user.id,
             body
         }
     } )
 
-    revalidatePath("/dashboard")
+    return {
+        status: "success"
+    }
 }

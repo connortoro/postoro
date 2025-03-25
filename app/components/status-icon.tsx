@@ -13,7 +13,7 @@ export default function StatusIcon({ status }: StatusIconProps) {
     )
   }
 
-  if (status === 'taken') {
+  if (status === 'failure') {
     return(
       <FaTimes className='text-red-400 text-2xl'/>
     )

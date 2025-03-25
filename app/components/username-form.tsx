@@ -39,7 +39,7 @@ export default function UsernameForm() {
     const hasValidLength = username.length >= 3 && username.length <= 18;
     const hasValidChars = /^[a-zA-Z0-9_]+$/.test(username);
     const doesntStartWithNumber = !/^[0-9]/.test(username);
-    
+
     return isNotEmpty && hasValidLength && hasValidChars && doesntStartWithNumber;
   }
 
@@ -64,7 +64,7 @@ export default function UsernameForm() {
       {status === "invalid" && (
         <div className='text-red-400'>Invalid Username</div>
       )}
-      {status === 'taken' && (
+      {status === 'failure' && (
         <div className='text-red-400'>Username Taken</div>
       )}
     </div>

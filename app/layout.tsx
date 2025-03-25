@@ -32,7 +32,7 @@ export default function RootLayout({
         <Header/>
         <div className="flex flex-row ">
           <Sidebar/>
-          <main className="flex-1 mt-[65px]">
+          <main className="flex-1 mt-[65px] ml-64">
             {children}
           </main>
         </div>

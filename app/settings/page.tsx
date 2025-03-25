@@ -12,7 +12,7 @@ export default async function Page() {
 
   return (
     <div className='flex flex-col items-center justify-center mr-[5rem]'>
-      <h1 className='my-[2rem] text-xl font-bold'>Change Your Username</h1>
+      <h2 className='my-[2rem] text-xl font-bold'>Change Your Username</h2>
       <UsernameForm/>
     </div>
   )
