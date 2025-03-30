@@ -18,7 +18,7 @@ export default async function PostPage( {params}: postPageProps ) {
   // Auth check
   const { isAuthenticated } = getKindeServerSession()
   if(!(await isAuthenticated())) {
-    redirect('home')
+    redirect('/home')
   }
 
   const post = await getPostById(num_id)

@@ -29,6 +29,13 @@ body {
   text-decoration: underline dashed;
   text-decoration-thickness: 1.6px;
   text-decoration-color: var(--foreground);
-  text-underline-offset: 7px; /* Controls the vertical distance */
+  text-underline-offset: 7px;
+}
+
+.custom-underline-2 {
+  text-decoration: underline dashed;
+  text-decoration-thickness: 5px;
+  text-decoration-color: var(--foreground);
+  text-underline-offset: 9px;
 }
 

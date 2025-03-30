@@ -8,7 +8,7 @@ export default async function Page() {
   // Auth Check
   const { isAuthenticated, getUser } = getKindeServerSession()
       if(!(await isAuthenticated())) {
-        redirect("/api/auth/login")
+        redirect("/")
       }
   const posts = await getAllPosts()
 

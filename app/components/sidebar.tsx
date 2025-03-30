@@ -1,12 +1,15 @@
 'use client';
 
+import { useKindeBrowserClient } from '@kinde-oss/kinde-auth-nextjs';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { FaCog, FaHome, FaInfoCircle, FaPlus } from 'react-icons/fa';
+import { FaCog, FaHome, FaPlus, FaUser } from 'react-icons/fa';
 
 const Sidebar = () => {
   const pathname = usePathname();
   const iconClass = "mr-[16px] text-xl";
+
+  useKindeBrowserClient
 
   return (
     <div className="w-64 fixed left-0 top-[65px] h-[calc(100vh-65px)] p-4 border-r-[1px] border-neutral-800">
@@ -30,10 +33,10 @@ const Sidebar = () => {
           <FaCog className={iconClass}/> Settings
         </Link>
         <Link
-          href="/about"
+          href="/profile"
           className={`flex flex-row items-center text-white p-2 text-lg hover:bg-neutral-900 rounded-[20px] py-[.7rem] px-4 ${pathname === '/about' ? 'outline-1 outline-neutral-300' : ''}`}
         >
-          <FaInfoCircle className={iconClass}/> About
+          <FaUser className={iconClass}/> Profile
         </Link>
       </nav>
     </div>
