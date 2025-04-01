@@ -9,7 +9,8 @@ export default async function Header() {
     return (
         <header className="bg-neutral-950 z-50 fixed flex items-center top-0 border-b border-black/20 w-full h-[50px] text-[14px] text-center px-[12rem] pt-[2rem] pb-[2rem] border-b-neutral-800">
             <Link href="/">
-                <div className="font-bold flex items-center gap-x-4 text-xl custom-underline text-neutral-200">ToroPost</div>
+                <div className="font-bold flex items-center gap-x-4 text-xl
+                bg-gradient-to-r from-green-100 to-blue-200 bg-clip-text text-transparent">ToroPost</div>
             </Link>
 
             {user &&

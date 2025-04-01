@@ -22,7 +22,7 @@ export default function LikeButton(props: LikeButtonProps) {
     <div onClick={(e) => {e.stopPropagation()
       e.preventDefault()
     }} className="flex items-center justify-center space-x-2">
-      <button onClick={(e) => handleClick(props.id, e)} className='hover:cursor-pointer text-lg p-[4px]'>
+      <button onClick={(e) => handleClick(props.id, e)} className='hover:cursor-pointer text-lg p-[4px] hover:scale-[1.13] transition'>
         {props.liked ? (
           <FaHeart className="text-red-500" />
         ) : (

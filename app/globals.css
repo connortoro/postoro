@@ -28,7 +28,7 @@ body {
 .custom-underline {
   text-decoration: underline dashed;
   text-decoration-thickness: 1.6px;
-  text-decoration-color: var(--foreground);
+  text-decoration-color: white;
   text-underline-offset: 7px;
 }
 

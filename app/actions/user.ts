@@ -3,6 +3,17 @@
 import prisma from "@/lib/prisma"
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server"
 import { redirect } from 'next/navigation'
+import { User } from '@prisma/client'
+
+export async function getFullUser(id: string): Promise<User| null> {
+  const user = await prisma.user.findUnique({
+    where: {
+      id
+    }
+  })
+
+  return user
+}
 
 export async function changeUsername(username: string) {
   const {isAuthenticated, getUser} = getKindeServerSession()

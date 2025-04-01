@@ -1,7 +1,7 @@
 import React from 'react'
 import { getKindeServerSession } from '@kinde-oss/kinde-auth-nextjs/server'
 import { redirect } from 'next/navigation'
-import PostForm from '../components/post-form'
+import PostForm from '../../components/post-form'
 
 export default async function Page() {
   // Auth Check

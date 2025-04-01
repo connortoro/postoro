@@ -8,7 +8,7 @@ export default async function Home() {
   //Auth Check
   const { isAuthenticated } = getKindeServerSession()
   if(await isAuthenticated()) {
-    redirect("/home")
+    redirect("/app/home")
   }
 
   return (
