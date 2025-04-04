@@ -8,12 +8,11 @@ export default function Hero() {
 
   return (
     <div className="min-h-screen bg-neutral-950 text-neutral-100 flex flex-col items-center pt-[5rem] pb-24 px-4 sm:px-6 lg:px-8">
-      {/* Main Hero Content */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        className="text-center mb-24" // Added margin-bottom here
+        className="text-center mb-16" 
       >
         <motion.h1
           className="text-5xl sm:text-7xl lg:text-9xl font-extrabold tracking-tight mb-4
@@ -22,7 +21,7 @@ export default function Hero() {
           animate={{ scale: 1 }}
           transition={{ type: "spring", stiffness: 100 }}
         >
-          ToroPost
+          Postoro
         </motion.h1>
         <motion.p
           className="text-xl sm:text-xl text-neutral-400 my-8 max-w-2xl mx-auto"
@@ -31,7 +30,7 @@ export default function Hero() {
           transition={{ delay: 0.3, duration: 0.8 }}
         >
           Where friends come together to really make it happen and everything is
-          good and happy forever
+          good and happy <span className="text-neutral-300 underline decoration-dashed ">forever</span>
         </motion.p>
         <motion.div
           className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6"
@@ -48,9 +47,8 @@ export default function Hero() {
         </motion.div>
       </motion.div>
 
-      {/* Review Section - Using Grid */}
       <motion.div
-        className="w-[70%] max-w-6xl mx-auto px-4" // Adjusted max-width and padding
+        className="w-[70%] max-w-6xl mx-auto px-4" 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.7, duration: 0.8 }}

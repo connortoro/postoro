@@ -15,6 +15,16 @@ export async function getFullUser(id: string): Promise<User| null> {
   return user
 }
 
+export async function getFullUserByUsername(username: string): Promise<User | null> {
+  const user = await prisma.user.findUnique({
+    where: {
+      username
+    }
+  })
+
+  return user
+}
+
 export async function changeUsername(username: string) {
   const {isAuthenticated, getUser} = getKindeServerSession()
   if(!(await isAuthenticated())) {

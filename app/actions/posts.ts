@@ -4,6 +4,7 @@ import prisma from "@/lib/prisma"
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+import { Post } from '@prisma/client'
 
 export async function getAllPosts() {
     // Auth Check
@@ -79,6 +80,34 @@ export async function getPostById(id: number) {
     })
 
     return post
+}
+
+export async function getPostsByUser(userId: string){
+    const posts = await prisma.post.findMany({
+        where: {
+            userId
+        },
+        include: {
+            user: {
+                select: {
+                    username: true,
+                    pic: true,
+                }
+            },
+            _count: {
+                select: {likes: true}
+            },
+            likes: {
+                where: {
+                    userId
+                },
+                select: {
+                    userId: true
+                }
+            }
+        },
+    })
+    return posts
 }
 
 
