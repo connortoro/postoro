@@ -2,6 +2,9 @@ import { getPostById } from "@/app/actions/posts"
 import Post from "@/app/components/post"
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server"
 import { redirect } from "next/navigation"
+import CommentForm from "@/app/components/comment-form"
+import Comment from "@/app/components/comment"
+import { getCommentsByPost } from "@/app/actions/comments"
 
 
 type postPageProps = {
@@ -22,12 +25,27 @@ export default async function PostPage( {params}: postPageProps ) {
   }
 
   const post = await getPostById(num_id)
+  if(!post) {
+    return(
+      <div>Post Not Found</div>
+    )
+  }
+
+  const comments = await getCommentsByPost(post.id)
 
 
   return (
-    <div className='flex flex-col items-start justify-center ml-[8rem]'>
-      {post ? <Post post={post}/>:
-      <h2>Post Not Found</h2>}
+    <div className='flex flex-col items-center justify-center mr-auto'>
+      <div className="flex flex-col items-center justify-center space-y-4">
+        <Post post={post}/>
+        <CommentForm postId={post.id}/>
+        <div className="h-[8rem] w-[3px] rounded-full bg-gradient-to-b from-green-100 to-blue-200"></div>
+        {comments?.map((comment)=> {
+          return(
+            <Comment comment={comment} key={comment.id}/>
+          )
+        })}
+      </div>
     </div>
   )
 }

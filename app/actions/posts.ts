@@ -24,7 +24,7 @@ export async function getAllPosts() {
                 }
             },
             _count: {
-                select: {likes: true}
+                select: {likes: true, comments: true}
             },
             likes: {
                 where: {
@@ -66,7 +66,7 @@ export async function getPostById(id: number) {
                 }
             },
             _count: {
-                select: {likes: true}
+                select: {likes: true, comments: true}
             },
             likes: {
                 where: {
