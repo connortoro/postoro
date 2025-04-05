@@ -4,7 +4,6 @@ import prisma from "@/lib/prisma"
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import { getFullUser } from "./user";
 
 export async function addComment(postId: number, body: string){
   const { isAuthenticated, getUser } = await getKindeServerSession()
@@ -47,6 +46,9 @@ export async function getCommentsByPost(postId: number){
       user: {
         select: {username: true, pic: true}
       }
-    }
+    },
+    orderBy: {
+      createdAt: 'desc'
+  }
   })
 }

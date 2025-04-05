@@ -3,6 +3,7 @@ import { getKindeServerSession } from '@kinde-oss/kinde-auth-nextjs/server'
 import { redirect } from 'next/navigation'
 import { getAllPosts } from '../../actions/posts'
 import Post from '../../components/post'
+import { getFullUser } from '@/app/actions/user'
 
 export default async function Page() {
   // Auth Check
@@ -10,6 +11,12 @@ export default async function Page() {
       if(!(await isAuthenticated())) {
         redirect("/")
       }
+  const user = await getUser()
+  const fullUser = await getFullUser(user.id)
+  if(!fullUser) {
+    //TODO: handle username setting
+    redirect("/app/settings")
+  }
   const posts = await getAllPosts()
 
   return (

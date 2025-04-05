@@ -1,10 +1,10 @@
 "use server"
 
+import { getImageUrl, uploadImageToS3 } from "@/lib/aws";
 import prisma from "@/lib/prisma"
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import { Post } from '@prisma/client'
 
 export async function getAllPosts() {
     // Auth Check
@@ -39,6 +39,13 @@ export async function getAllPosts() {
             createdAt: 'desc'
         }
     })
+
+    posts.forEach(async (post) =>  {
+        if(post.pic){
+            post.pic = await getImageUrl(post.pic)
+        }
+    })
+
     return posts
 }
 
@@ -79,6 +86,11 @@ export async function getPostById(id: number) {
         },
     })
 
+    if(post?.pic) {
+        post.pic = await getImageUrl(post.pic)
+    }
+
+
     return post
 }
 
@@ -107,11 +119,17 @@ export async function getPostsByUser(userId: string){
             }
         },
     })
+
+    posts.forEach(async (post) =>  {
+        if(post.pic){
+            post.pic = await getImageUrl(post.pic)
+        }
+    })
     return posts
 }
 
 
-export async function addPost(body: string) {
+export async function addPost(formData: FormData) {
 
     // Auth Check
     const { isAuthenticated, getUser } = getKindeServerSession()
@@ -137,11 +155,26 @@ export async function addPost(body: string) {
         }
     }
 
+    const body = formData.get('body') as string;
+    const file = formData.get('image') as File | null;
+    let imageS3Key: string | null = null
+    //Save to s3
+    if(file && file.size > 0) {
+        const arrayBuffer = await file.arrayBuffer()
+        const buffer = Buffer.from(arrayBuffer)
+        const contentType = file.type
+        const res = await uploadImageToS3(buffer, contentType)
+        console.log(res)
+        if(res.success) {
+            imageS3Key = res.fileKey
+        }
+    }
 
     await prisma.post.create( {
         data: {
             userId: user.id,
-            body
+            body,
+            pic: imageS3Key,
         }
     } )
 

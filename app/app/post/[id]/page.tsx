@@ -39,7 +39,7 @@ export default async function PostPage( {params}: postPageProps ) {
       <div className="flex flex-col items-center justify-center space-y-4">
         <Post post={post}/>
         <CommentForm postId={post.id}/>
-        <div className="h-[8rem] w-[3px] rounded-full bg-gradient-to-b from-green-100 to-blue-200"></div>
+        <div className="h-[4rem] w-[3px] rounded-full"></div>
         {comments?.map((comment)=> {
           return(
             <Comment comment={comment} key={comment.id}/>

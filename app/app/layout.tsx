@@ -9,16 +9,12 @@ export default async function AppLayout({children}: Readonly<{children: React.Re
   const { getUser } = getKindeServerSession()
   const user = await getUser()
   const fullUser = await getFullUser(user.id)
-  if(!fullUser) {
-    //TODO: handle username setting
-    redirect("app/settings")
-  }
 
   return (
     <>
       <Header/>
       <div className="flex flex-row ">
-        <Sidebar username={fullUser?.username}/>
+        <Sidebar username={fullUser?.username || ""}/>
         <main className="flex-1 mt-[65px] ml-64">
           {children}
         </main>
