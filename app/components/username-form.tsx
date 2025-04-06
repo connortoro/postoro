@@ -15,9 +15,7 @@ export default function UsernameForm() {
     setStatus("loading")
 
     const res = await changeUsername(username)
-    setTimeout(() => {
-      setStatus(res?.status)
-    }, 400);
+    setStatus(res?.status)
   }
 
   useEffect(() => {
