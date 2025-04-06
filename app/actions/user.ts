@@ -66,3 +66,16 @@ export async function changeUsername(username: string) {
   }
 
 }
+
+
+export async function findUsersByUsername(searchString: string): Promise<User[]> {
+  const users = await prisma.user.findMany({
+    where: {
+      username: {
+        contains: searchString
+      },
+    },
+  });
+
+  return users || [];
+}

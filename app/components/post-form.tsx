@@ -91,58 +91,59 @@ export default function PostForm() {
         maxLength={500}
       ></textarea>
 
-      {/* Styled file input with fixed width */}
-      <div className="relative">
-        <input
-          type="file"
-          name="image"
-          accept="image/*"
-          onChange={handleFileChange}
-          className="hidden"
-          id="file-upload"
-        />
-        <label
-          htmlFor="file-upload"
-          className="cursor-pointer bg-neutral-200 hover:bg-neutral-300 text-neutral-950 px-4 py-2 rounded transition-colors duration-200 flex items-center space-x-2 w-[200px]"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5 flex-shrink-0"
-            viewBox="0 0 20 20"
-            fill="currentColor"
+      <div className="flex flex-row justify-between w-full px-[.2rem]">
+        <div className="relative">
+          <input
+            type="file"
+            name="image"
+            accept="image/*"
+            onChange={handleFileChange}
+            className="hidden"
+            id="file-upload"
+          />
+          <label
+            htmlFor="file-upload"
+            className="cursor-pointer bg-neutral-200 hover:bg-neutral-300 text-neutral-950 px-4 py-2 rounded transition-colors duration-200 flex items-center space-x-2 w-[200px]"
           >
-            <path
-              fillRule="evenodd"
-              d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z"
-              clipRule="evenodd"
-            />
-          </svg>
-          <span className="truncate">
-            {file ? truncateFilename(file.name) : "Choose an image"}
-          </span>
-        </label>
-        {fileError && (
-          <p className="text-red-500 text-sm mt-1">{fileError}</p>
-        )}
-      </div>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-5 w-5 flex-shrink-0"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fillRule="evenodd"
+                d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z"
+                clipRule="evenodd"
+              />
+            </svg>
+            <span className="truncate">
+              {file ? truncateFilename(file.name) : "Choose an image"}
+            </span>
+          </label>
+          {fileError && (
+            <p className="text-red-500 text-sm mt-1">{fileError}</p>
+          )}
+        </div>
 
-      <div className="flex flex-row items-center justify-center space-x-4">
-        <button
-          type="submit"
-          className="hover:cursor-pointer w-[5rem] h-[2.3rem] rounded-[10px] outline-1 outline-neutral-400"
-        >
-          Submit
-        </button>
-        <StatusIcon status={status} />
-        {status === "failure" && (
-          <p className="text-red-400">
-            Please Set Username in{" "}
-            <Link href={"/settings"}>
-              <b className="text-lg">Settings</b>
-            </Link>
-          </p>
-        )}
-      </div>
+        <div className="flex flex-row items-center justify-center space-x-4">
+          <button
+            type="submit"
+            className="hover:cursor-pointer w-[5rem] h-[2.3rem] rounded-[10px] outline-1 outline-neutral-400"
+          >
+            Submit
+          </button>
+          <StatusIcon status={status} />
+          {status === "failure" && (
+            <p className="text-red-400">
+              Please Set Username in{" "}
+              <Link href={"/settings"}>
+                <b className="text-lg">Settings</b>
+              </Link>
+            </p>
+          )}
+        </div>
+        </div>
     </form>
   );
 }

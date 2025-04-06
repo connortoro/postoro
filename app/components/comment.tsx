@@ -22,7 +22,7 @@ export default function Comment({ comment }: { comment: commentProps }) {
 
 
   return (
-    <div className='w-[35rem] min-h-[5rem]  rounded-[10px] text-wrap flex flex-col items-start justify-start p-[.5rem] px-[.7rem] outline-1 outline-neutral-700'>
+    <div className='w-[35rem] min-h-[5rem]  rounded-[10px] text-wrap flex flex-col items-start justify-start py-[.7rem] px-[.7rem] outline-1 outline-neutral-700'>
         <div className='flex flex-row items-center justify-between w-full mb-[.5rem]'>
           <UserTag pic={comment.user.pic} username={comment.user.username}/>
           <p className='text-neutral-400'>{time_text(comment.createdAt)}</p>

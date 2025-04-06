@@ -15,16 +15,20 @@ const SIGNED_URL_EXPIRES_IN = 60 * 10;
 
 export async function uploadImageToS3(fileBuffer: Buffer, contentType: string): Promise<{ success: true; fileKey: string } | { success: false; error: string }> {
   try {
+    //gen file key
     const uniqueId = uuidv4()
     const extension = contentType.split("/")[1] ?? "bin"
     const fileKey = `${uniqueId}.${extension}`
 
+    //creat upload command
     const putObjectCommand = new PutObjectCommand({
       Bucket: BUCKET_NAME,
       Key: fileKey,
       Body: fileBuffer,
       ContentType: contentType,
     })
+
+    //send command, return key
     await s3Client.send(putObjectCommand);
     return { success: true, fileKey: fileKey };
   } catch(error) {
@@ -34,10 +38,13 @@ export async function uploadImageToS3(fileBuffer: Buffer, contentType: string): 
 }
 
 export async function getImageUrl(fileKey: string): Promise<string | null> {
+
+  //create get command
   const command = new GetObjectCommand({
     Bucket: BUCKET_NAME,
     Key: fileKey,
   })
+
 
   try {
     const signedUrl = await getSignedUrl(s3Client, command, { expiresIn: SIGNED_URL_EXPIRES_IN });
@@ -45,5 +52,6 @@ export async function getImageUrl(fileKey: string): Promise<string | null> {
   } catch(error){
     console.error(`Error generating signed URL for ${fileKey}:`, error);
     return null;
+
   }
 }

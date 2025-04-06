@@ -20,7 +20,7 @@ export default async function Page() {
   const posts = await getAllPosts()
 
   return (
-    <div className='flex flex-col items-center justify-center'>
+    <div className='flex flex-col items-center justify-center mb-[10rem]'>
       {posts?.map((post) => {
         return(
           <Post post={post} key={post.id}/>

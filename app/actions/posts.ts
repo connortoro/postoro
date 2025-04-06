@@ -107,7 +107,7 @@ export async function getPostsByUser(userId: string){
                 }
             },
             _count: {
-                select: {likes: true}
+                select: {likes: true, comments: true}
             },
             likes: {
                 where: {

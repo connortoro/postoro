@@ -25,7 +25,7 @@ export default async function Page({params}: profilePageProps) {
     <div className="flex flex-col items-center justify-center">
       <div className="w-full flex flex-row justify-start items-center px-[3rem] py-[1rem] space-x-8 border-b-1 border-neutral-800">
         <Image src={fullUser?.pic || blank_pfp} height={100} width={100} alt="pfp"  className="rounded-full"></Image>
-        <h2 className="text-3xl font-bold pt-[2rem]">{fullUser?.username}</h2>
+        <h2 className="text-3xl font-bold">{fullUser?.username}</h2>
       </div>
       {posts.map((post) => {
         return(
