@@ -25,7 +25,7 @@ export default function Post({ post }: { post: PostWithUser }) {
   return (
 
     <Link href={`/app/post/${post.id}`} className=' space-y-3'>
-    <div className='w-[35rem] min-h-[5rem] outline-1 outline-neutral-500 rounded-[10px] mt-[3rem] text-wrap flex flex-col items-start justify-start p-[.7rem]'>
+    <div className='w-[35rem] min-h-[5rem] outline-2 outline-neutral-500 rounded-[10px] mt-[3rem] text-wrap flex flex-col items-start justify-start p-[.7rem]'>
         <div className='flex flex-row items-center justify-between w-full mb-[.5rem]'>
           <UserTag pic={post.user.pic} username={post.user.username}/>
           <p className='text-neutral-400'>{time_text(post.createdAt)}</p>
