@@ -12,7 +12,7 @@ export default function Hero() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        className="text-center mb-16" 
+        className="text-center mb-16"
       >
         <motion.h1
           className="text-5xl sm:text-7xl lg:text-9xl font-extrabold tracking-tight mb-4
@@ -48,7 +48,7 @@ export default function Hero() {
       </motion.div>
 
       <motion.div
-        className="w-[70%] max-w-6xl mx-auto px-4" 
+        className="w-[70%] max-w-6xl mx-auto px-4"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.7, duration: 0.8 }}
@@ -57,8 +57,8 @@ export default function Hero() {
           {/* Review 1 */}
           <div className="text-center p-6 border-none outline-none">
             <blockquote className="text-sm italic text-neutral-400 leading-relaxed mb-4">
-              "The most intuitive platform for genuine connection we've seen
-              this year."
+            &quot;The most intuitive platform for genuine connection we&apos;ve seen
+              this year.&quot;
             </blockquote>
             <p className="text-sm text-neutral-400">- Wires</p>
           </div>
@@ -66,7 +66,7 @@ export default function Hero() {
           {/* Review 2 */}
           <div className="text-center p-6 border-none outline-none">
             <blockquote className="text-sm italic text-neutral-400 leading-relaxed mb-4">
-              "We are shocked to the bone with the level of beauty and excellence in this website. Truly breathtaking"
+            &quot;We are shocked to the bone with the level of beauty and excellence in this website. Truly breathtaking&quot;
             </blockquote>
             <p className="text-sm text-neutral-400">- Oplio</p>
           </div>
@@ -75,7 +75,7 @@ export default function Hero() {
           {/* Review 3 */}
           <div className="text-center p-6 border-none outline-none">
             <blockquote className="text-sm italic text-neutral-400 leading-relaxed mb-4">
-              "The masterfullness of this website caused a mental breakdown which I'm still recovering from."
+            &quot;The masterfullness of this website caused a mental breakdown which I&apos;m still recovering from.&quot;
             </blockquote>
             <p className="text-sm text-neutral-400">- Techolomon</p>
           </div>

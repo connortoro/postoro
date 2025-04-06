@@ -31,6 +31,8 @@ export async function changeUsername(username: string) {
     redirect("/api/auth/login")
   }
 
+  username = username.toLowerCase()
+
   //username taken
   const existingUser = await prisma.user.findUnique({ where: {username: username} })
   if(existingUser) {
@@ -65,4 +67,17 @@ export async function changeUsername(username: string) {
     status: 'success'
   }
 
+}
+
+
+export async function findUsersByUsername(searchString: string): Promise<User[]> {
+  const users = await prisma.user.findMany({
+    where: {
+      username: {
+        contains: searchString
+      },
+    },
+  });
+
+  return users || [];
 }

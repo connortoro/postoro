@@ -1,7 +1,6 @@
 import Header from "../components/header";
 import Sidebar from "../components/sidebar";
-import { getFullUser } from "../actions/user";
-import {redirect} from 'next/navigation'
+import { getFullUser } from "../actions/users";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 
 

@@ -3,7 +3,7 @@ import { getKindeServerSession } from '@kinde-oss/kinde-auth-nextjs/server'
 import { redirect } from 'next/navigation'
 import { getAllPosts } from '../../actions/posts'
 import Post from '../../components/post'
-import { getFullUser } from '@/app/actions/user'
+import { getFullUser } from '@/app/actions/users'
 
 export default async function Page() {
   // Auth Check

@@ -6,15 +6,11 @@ import CommentForm from "@/app/components/comment-form"
 import Comment from "@/app/components/comment"
 import { getCommentsByPost } from "@/app/actions/comments"
 
-
-type postPageProps = {
-  params: {
-    id: string
-  }
-
+interface PostPageProps {
+  params: Promise<{id: string}>
 }
 
-export default async function PostPage( {params}: postPageProps ) {
+export default async function PostPage( {params}: PostPageProps) {
   const { id } = await params
   const num_id = parseInt(id)
 

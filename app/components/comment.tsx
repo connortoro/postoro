@@ -1,7 +1,4 @@
 import { time_text } from '@/lib/utilities';
-import LikeButton from './like-button';
-import CommentButton from './comment-button';
-import Link from 'next/link';
 import UserTag from './user-tag';
 
 type commentProps = {

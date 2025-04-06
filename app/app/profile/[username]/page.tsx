@@ -1,13 +1,11 @@
 import { getPostsByUser } from "@/app/actions/posts"
-import { getFullUserByUsername } from "@/app/actions/user"
+import { getFullUserByUsername } from "@/app/actions/users"
 import Post from "@/app/components/post"
 import Image from "next/image"
 
 
 type profilePageProps = {
-  params: {
-    username: string
-  }
+  params: Promise<{username: string}>
 }
 
 export default async function Page({params}: profilePageProps) {
@@ -16,7 +14,7 @@ export default async function Page({params}: profilePageProps) {
   const fullUser = await getFullUserByUsername(username)
   if(!fullUser){
     return(
-      <h1>User Doesn't exist</h1>
+      <h1>User Doesn&apos;t exist</h1>
     )
   }
   const posts = await getPostsByUser(fullUser.id)

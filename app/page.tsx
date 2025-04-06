@@ -1,7 +1,7 @@
-import { getKindeServerSession, LoginLink, RegisterLink } from "@kinde-oss/kinde-auth-nextjs/server";
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { redirect } from "next/navigation";
-import { motion } from "framer-motion";
 import Hero from "./components/hero";
+export const dynamic = 'force-dynamic';
 
 export default async function Home() {
 

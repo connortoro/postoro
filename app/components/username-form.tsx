@@ -2,7 +2,7 @@
 
 import React, { useEffect } from 'react';
 import { useState } from 'react';
-import { changeUsername } from '../actions/user';
+import { changeUsername } from '../actions/users';
 import StatusIcon from './status-icon';
 
 export default function UsernameForm() {
@@ -37,7 +37,7 @@ export default function UsernameForm() {
   function isValidUsername(username: string) {
     const isNotEmpty = username && username.trim() !== '';
     const hasValidLength = username.length >= 3 && username.length <= 18;
-    const hasValidChars = /^[a-zA-Z0-9_]+$/.test(username);
+    const hasValidChars = /^[a-zA-Z0-9_.]+$/.test(username);
     const doesntStartWithNumber = !/^[0-9]/.test(username);
 
     return isNotEmpty && hasValidLength && hasValidChars && doesntStartWithNumber;

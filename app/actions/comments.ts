@@ -33,7 +33,7 @@ export async function addComment(postId: number, body: string){
 }
 
 export async function getCommentsByPost(postId: number){
-  const { isAuthenticated, getUser } = await getKindeServerSession()
+  const { isAuthenticated } = await getKindeServerSession()
   if(!(await isAuthenticated())) {
     redirect("/api/auth/login")
   }

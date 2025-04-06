@@ -1,7 +1,6 @@
 "use client"
 
 import { useState } from "react"
-import StatusIcon from "./status-icon"
 import { addComment } from "../actions/comments"
 
 type commentFormProps = {
@@ -13,7 +12,7 @@ export default function CommentForm({postId}: commentFormProps) {
 
   const handleSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    const res = await addComment(postId, body)
+    await addComment(postId, body)
     setBody("")
   }
 
