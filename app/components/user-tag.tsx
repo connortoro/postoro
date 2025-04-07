@@ -18,10 +18,12 @@ export default function UserTag({username, pic} : UserTagProps) {
     redirect(`/app/profile/${username}`)
   }
 
+  const color = username == 'connor' ? 'bg-gradient-to-r from-green-200 to-blue-200 bg-clip-text text-transparent' : 'text-white'
+
   return(
     <div onClick={(e) => handleClick(e)} className="flex flex-row items-center justify-center space-x-2">
       <Image src={pic || blank_pfp} height={30} width={30} alt="pfp" className='rounded-full'></Image>
-      <h3 className='font-bold hover:underline hover:cursor-pointer text-white'>{username}</h3>
+      <h3 className={'font-bold hover:underline hover:cursor-pointer ' + color}>{username}</h3>
     </div>
   )
 }
