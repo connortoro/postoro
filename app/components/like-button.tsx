@@ -1,6 +1,5 @@
 "use client"
 
-import React from 'react';
 import { FaHeart, FaRegHeart } from 'react-icons/fa';
 import { toggleLike } from '../actions/posts';
 import { useState } from 'react';
@@ -16,10 +15,17 @@ type LikeButtonProps = {
 
 export default function LikeButton(props: LikeButtonProps) {
   const [likeState, setLikeState] = useState(props.liked)
+  const [numState, setNumState] = useState(props.numLikes)
+
   async function handleClick(postId: number, e: React.MouseEvent) {
     e.preventDefault()
     e.stopPropagation()
     setLikeState((curr)=> !curr)
+    if (likeState){
+      setNumState((num)=> num-1)
+    } else {
+      setNumState((num)=> num+1)
+    }
     await toggleLike(postId)
   }
 
@@ -34,7 +40,7 @@ export default function LikeButton(props: LikeButtonProps) {
           <FaRegHeart />
         )}
       </button>
-      <span>{props.numLikes}</span>
+      <span>{numState}</span>
     </div>
   );
 }

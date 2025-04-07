@@ -4,6 +4,7 @@ import prisma from "@/lib/prisma"
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server"
 import { redirect } from 'next/navigation'
 import { User } from '@prisma/client'
+import { getImageUrl, uploadImageToS3 } from "@/lib/aws";
 
 export async function getFullUser(id: string): Promise<User| null> {
   const user = await prisma.user.findUnique({
@@ -11,6 +12,10 @@ export async function getFullUser(id: string): Promise<User| null> {
       id
     }
   })
+
+  if(user && user.pic && !user.pic.startsWith("https://")) {
+    user.pic = await getImageUrl(user.pic)
+  }
 
   return user
 }
@@ -21,6 +26,10 @@ export async function getFullUserByUsername(username: string): Promise<User | nu
       username
     }
   })
+
+  if(user && user.pic && !user.pic.startsWith("https://")) {
+    user.pic = await getImageUrl(user.pic)
+  }
 
   return user
 }
@@ -79,5 +88,65 @@ export async function findUsersByUsername(searchString: string): Promise<User[]>
     },
   });
 
+  for(const user of users) {
+    if(user && user.pic && !user.pic.startsWith("https://")) {
+      user.pic = await getImageUrl(user.pic)
+    }
+  }
+
   return users || [];
+}
+
+export async function changeProfilePicture(formData: FormData) {
+
+  // Auth Check
+  const { isAuthenticated, getUser } = getKindeServerSession()
+  if(!(await isAuthenticated())) {
+      redirect("/api/auth/login")
+  }
+
+  const user = await getUser()
+  if(!user) {
+      return {
+          status: "failure"
+      }
+  }
+
+  const fullUser = await getFullUser(user.id)
+  if(!fullUser) {
+    return {
+      status: "failure"
+    }
+  }
+
+  const file = formData.get('image') as File | null;
+  let imageS3Key: string | null = null
+  //Save to s3
+  if(file && file.size > 0) {
+      const arrayBuffer = await file.arrayBuffer()
+      const buffer = Buffer.from(arrayBuffer)
+      const contentType = file.type
+      const res = await uploadImageToS3(buffer, contentType)
+      console.log(res)
+      if(res.success) {
+          imageS3Key = res.fileKey
+      }
+  } else {
+    return{
+      status: 'failure'
+    }
+  }
+
+  await prisma.user.update({
+    where: {
+      id: fullUser.id
+    },
+    data: {
+      pic: imageS3Key
+    }
+  })
+
+  return {
+      status: "success"
+  }
 }

@@ -3,7 +3,7 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   /* config options here */
   images: {
-    domains: ['lh3.googleusercontent.com', "www.shutterstock.com", "postoro-images.s3.us-west-2.amazonaws.com"], // Add the correct domain
+    domains: ['lh3.googleusercontent.com', "www.shutterstock.com", "postoro-images.s3.us-west-2.amazonaws.com", "gravatar.com"], // Add the correct domain
   },
   experimental: {
     serverActions: {

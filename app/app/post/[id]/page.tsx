@@ -41,6 +41,7 @@ export default async function PostPage( {params}: PostPageProps) {
             <Comment comment={comment} key={comment.id}/>
           )
         })}
+        <div className="h-[6rem] w-[3px] rounded-full"></div>
       </div>
     </div>
   )

@@ -4,6 +4,7 @@ import prisma from "@/lib/prisma"
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+import { getImageUrl } from "@/lib/aws";
 
 export async function addComment(postId: number, body: string){
   const { isAuthenticated, getUser } = await getKindeServerSession()
@@ -38,7 +39,7 @@ export async function getCommentsByPost(postId: number){
     redirect("/api/auth/login")
   }
 
-  return await prisma.comment.findMany({
+  const comments = await prisma.comment.findMany({
     where: {
       postId
     },
@@ -51,4 +52,13 @@ export async function getCommentsByPost(postId: number){
       createdAt: 'desc'
   }
   })
+
+  for(const comment of comments) {
+
+    if(comment.user && comment.user.pic && !comment.user.pic.startsWith("https://")) {
+      comment.user.pic = await getImageUrl(comment.user.pic)
+      }
+  }
+
+  return comments
 }

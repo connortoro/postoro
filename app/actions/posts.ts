@@ -44,6 +44,9 @@ export async function getAllPosts() {
         if(post.pic){
             post.pic = await getImageUrl(post.pic)
         }
+        if(post.user && post.user.pic && !post.user.pic.startsWith("https://")) {
+            post.user.pic = await getImageUrl(post.user.pic)
+        }
     })
 
     return posts
@@ -86,8 +89,16 @@ export async function getPostById(id: number) {
         },
     })
 
-    if(post?.pic) {
+    if(!post){
+        return null
+    }
+
+    if(post.pic) {
         post.pic = await getImageUrl(post.pic)
+    }
+
+    if(post.user && post.user.pic && !post.user.pic.startsWith("https://")) {
+        post.user.pic = await getImageUrl(post.user.pic)
     }
 
 
@@ -123,6 +134,9 @@ export async function getPostsByUser(userId: string){
     posts.forEach(async (post) =>  {
         if(post.pic){
             post.pic = await getImageUrl(post.pic)
+        }
+        if(post.user && post.user.pic && !post.user.pic.startsWith("https://")) {
+            post.user.pic = await getImageUrl(post.user.pic)
         }
     })
     return posts
