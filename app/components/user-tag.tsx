@@ -1,6 +1,6 @@
 "use client"
 
-import Image from "next/image"
+
 import { redirect } from 'next/navigation'
 
 type UserTagProps = {
@@ -22,7 +22,7 @@ export default function UserTag({username, pic} : UserTagProps) {
 
   return(
     <div onClick={(e) => handleClick(e)} className="flex flex-row items-center justify-center space-x-2">
-      <Image src={pic || blank_pfp} height={30} width={30} alt="pfp" className='rounded-full'></Image>
+      <img src={pic || blank_pfp} height={30} width={30} alt="pfp" className='rounded-full'></img>
       <h3 className={'font-bold hover:underline hover:cursor-pointer ' + color}>{username}</h3>
     </div>
   )

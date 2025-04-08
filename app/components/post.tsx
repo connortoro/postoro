@@ -4,7 +4,6 @@ import LikeButton from './like-button';
 import CommentButton from './comment-button';
 import Link from 'next/link';
 import UserTag from './user-tag';
-import Image from 'next/image';
 
 type PostWithUser = PrismaPost & {
   user: {
@@ -31,7 +30,7 @@ export default function Post({ post }: { post: PostWithUser }) {
           <p className='text-neutral-400'>{time_text(post.createdAt)}</p>
         </div>
         <p className='break-words whitespace-pre-line mb-[.5rem] ml-[38px] w-[90%]'>{post.body}</p>
-        {post.pic ? <Image src={post.pic} height={450} width={450} alt='uploaded picture' className='ml-[42px] my-[1rem] rounded-[.7rem]'/> : <></>}
+        {post.pic ? <img src={post.pic} height={450} width={450} alt='uploaded picture' className='ml-[42px] my-[1rem] rounded-[.7rem]'/> : <></>}
       <div className='flex flex-row space-x-4 ml-[36px]'>
         <LikeButton id={post.id} numLikes={post._count.likes} liked={post.likes.length > 0}/>
         <CommentButton numComments={post._count.comments}/>
