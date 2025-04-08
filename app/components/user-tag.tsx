@@ -22,7 +22,7 @@ export default function UserTag({username, pic} : UserTagProps) {
 
   return(
     <div onClick={(e) => handleClick(e)} className="flex flex-row items-center justify-center space-x-2">
-      <img src={pic || blank_pfp} height={30} width={30} alt="pfp" className='rounded-full'></img>
+      <img src={pic || blank_pfp} alt="pfp" className="h-[30px] w-[30px] rounded-full object-cover"></img>
       <h3 className={'font-bold hover:underline hover:cursor-pointer ' + color}>{username}</h3>
     </div>
   )

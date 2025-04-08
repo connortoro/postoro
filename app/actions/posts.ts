@@ -129,6 +129,9 @@ export async function getPostsByUser(userId: string){
                 }
             }
         },
+        orderBy:{
+            createdAt: 'desc'
+        }
     })
 
     posts.forEach(async (post) =>  {
