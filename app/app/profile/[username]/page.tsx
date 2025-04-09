@@ -24,7 +24,7 @@ export default async function Page({params}: profilePageProps) {
         <img src={fullUser?.pic || blank_pfp} alt="pfp"  className="h-[100px] w-[100] rounded-full object-cover"></img>
         <h2 className="text-3xl font-bold">{fullUser?.username}</h2>
       </div>
-      {posts.map((post) => {
+      {posts && posts.map((post) => {
         return(
           <Post post={post} key={post.id}/>
         )

@@ -6,6 +6,27 @@ import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
+const approvedUsers = [
+    "kp_0c038619dd374e78acef3d6edac3ec44",
+    "kp_8ee0277df324429ca8d2b372004af55d",
+    "kp_93ef4aafe5354bec87bd26bd78fe9bee",
+    "kp_a01b9bd4e7484cbb996cb5c36ed37b67",
+    "kp_b329e6c774854ad3a9a5f2c633e1d919",
+    "kp_d16ff9f450af403b9e0f0ad409f8b57c",
+    "kp_d6cb556b948d48389a7ae1b9a1247a52",
+    "kp_f32d1d5d7a6e4d219b4974a5fa4f0ba2",
+    "kp_ffb586da006c466e94a336df9887aefd"
+]
+
+function isApproved(id: string) {
+    for (const approvedUser of approvedUsers) {
+        if (id === approvedUser) {
+            return true
+        }
+    }
+    return false
+}
+
 export async function getAllPosts() {
     // Auth Check
     const { isAuthenticated, getUser } = getKindeServerSession()
@@ -14,6 +35,9 @@ export async function getAllPosts() {
     }
     const user = await getUser()
     const currUserId = user.id
+    if(!isApproved(currUserId)) {
+        return null
+    }
 
     const posts = await prisma.post.findMany({
         include: {
@@ -63,6 +87,9 @@ export async function getPostById(id: number) {
         return null
     }
     const currUserId = user.id
+    if(!isApproved(currUserId)) {
+        return null
+    }
 
     const post = await prisma.post.findUnique({
         where: {
@@ -106,6 +133,20 @@ export async function getPostById(id: number) {
 }
 
 export async function getPostsByUser(userId: string){
+    // Auth Check
+    const { isAuthenticated, getUser } = getKindeServerSession()
+    if(!(await isAuthenticated())) {
+        redirect("/api/auth/login")
+    }
+    const user = await getUser()
+    if(!user){
+        return null
+    }
+    const currUserId = user.id
+    if(!isApproved(currUserId)) {
+        return null
+    }
+
     const posts = await prisma.post.findMany({
         where: {
             userId

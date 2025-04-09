@@ -18,12 +18,8 @@ export default async function Header() {
                 bg-gradient-to-r from-green-100 to-blue-200 bg-clip-text text-transparent">postoro</div>
             </Link>
 
-            {fullUser &&
-            <>
-                <LogoutLink className="ml-auto">Logout</LogoutLink>
-                <img src={imgSrc || ""} alt="pfp" width={40} height={40} className="ml-[1.5rem] rounded-full"></img>
-            </>
-            }
+            <LogoutLink className="ml-auto">Logout</LogoutLink>
+            {fullUser && <img src={imgSrc || ""} alt="pfp" width={40} height={40} className="ml-[1.5rem] rounded-full"></img>}
         </header>
     )
 }
