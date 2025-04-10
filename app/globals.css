@@ -27,3 +27,21 @@ body {
   text-underline-offset: 9px;
 }
 
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0; /* Start position slightly off-screen left */
+  }
+  100% {
+    background-position: 200% 0; /* End position slightly off-screen right */
+  }
+}
+
+/* Define the class to apply the animation */
+.text-shimmer {
+  /* Make the background gradient larger than the text */
+  background-size: 200% auto;
+
+  /* Apply the animation */
+  /* name | duration | timing-function | iteration-count */
+  animation: shimmer 1s linear infinite;
+}
