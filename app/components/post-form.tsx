@@ -13,7 +13,7 @@ export default function PostForm() {
   const [fileError, setFileError] = useState("");
 
   const validateFile = (file: File) => {
-    const validTypes = ["image/jpeg", "image/png", "image/gif", "image/webp"];
+    const validTypes = ["image/jpeg", "image/png", "image/gif", "image/webp", "image/heic", "image/heif"];
     const maxSize = 5 * 1024 * 1024; // 5MB
 
     if (!validTypes.includes(file.type)) {
@@ -49,7 +49,7 @@ export default function PostForm() {
     const formData = new FormData();
     formData.append("body", body);
     if (file) {
-      formData.append("image", file);
+      formData.append("image", file, file.name);
     }
 
     const res = await addPost(formData);

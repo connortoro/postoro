@@ -15,7 +15,9 @@ const approvedUsers = [
     "kp_d16ff9f450af403b9e0f0ad409f8b57c",
     "kp_d6cb556b948d48389a7ae1b9a1247a52",
     "kp_f32d1d5d7a6e4d219b4974a5fa4f0ba2",
-    "kp_ffb586da006c466e94a336df9887aefd"
+    "kp_ffb586da006c466e94a336df9887aefd",
+    "kp_7e4dc0d5e0eb480b9ffbb787a16cb9ff",
+    "kp_23c4bff5ea0646ee9b735337e842fd7c"
 ]
 
 function isApproved(id: string) {
@@ -228,13 +230,18 @@ export async function addPost(formData: FormData) {
         }
     }
 
-    await prisma.post.create( {
-        data: {
-            userId: user.id,
-            body,
-            pic: imageS3Key,
-        }
-    } )
+    try {
+        await prisma.post.create( {
+            data: {
+                userId: user.id,
+                body,
+                pic: imageS3Key,
+            }
+        } )
+    } catch (error: unknown) {
+        console.log(error)
+    }
+
 
     return {
         status: "success"
