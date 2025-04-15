@@ -13,7 +13,7 @@ export default function PostForm() {
   const [fileError, setFileError] = useState("");
 
   const validateFile = (file: File) => {
-    const validTypes = ["image/jpeg", "image/png", "image/gif", "image/webp", "image/heic", "image/heif"];
+    const validTypes = ["image/jpeg", "image/png", "image/gif", "image/webp"];
     const maxSize = 5 * 1024 * 1024; // 5MB
 
     if (!validTypes.includes(file.type)) {
