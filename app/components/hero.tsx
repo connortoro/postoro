@@ -29,7 +29,7 @@ export default function Hero() {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.3, duration: 0.8 }}
         >
-          Where friends come together to really make it happen and everything is
+          Where friends come together to make it happen and everything is
           good and happy <span className="text-neutral-300 underline decoration-dashed ">forever</span>
         </motion.p>
         <motion.div
@@ -54,16 +54,13 @@ export default function Hero() {
         transition={{ delay: 0.7, duration: 0.8 }}
       >
         <div className="flex flex-row">
-          {/* Review 1 */}
           <div className="text-center p-6 border-none outline-none">
             <blockquote className="text-sm italic text-neutral-400 leading-relaxed mb-4">
             &quot;The most intuitive platform for genuine connection we&apos;ve seen
               this year.&quot;
             </blockquote>
-            <p className="text-sm text-neutral-400">- Wires</p>
+            <p className="text-sm text-neutral-400">- My Mom</p>
           </div>
-
-          {/* Review 2 */}
           <div className="text-center p-6 border-none outline-none">
             <blockquote className="text-sm italic text-neutral-400 leading-relaxed mb-4">
             &quot;We are shocked to the bone with the level of beauty and excellence in this website. Truly breathtaking&quot;
@@ -71,17 +68,17 @@ export default function Hero() {
             <p className="text-sm text-neutral-400">- Oplio</p>
           </div>
 
-
-          {/* Review 3 */}
           <div className="text-center p-6 border-none outline-none">
             <blockquote className="text-sm italic text-neutral-400 leading-relaxed mb-4">
-            &quot;The masterfullness of this website caused a mental breakdown which I&apos;m still recovering from.&quot;
+            &quot;The masterfullness of this website is second to none.&quot;
             </blockquote>
-            <p className="text-sm text-neutral-400">- Techolomon</p>
+            <p className="text-sm text-neutral-400">- ...</p>
           </div>
 
         </div>
       </motion.div>
+
+      <h2 className="text-neutral-400 mt-[10rem] outline-1 outline-neutral-400 rounded-[10px] p-4 font-bold">⚠️ postoro is currently invite only ⚠️</h2>
     </div>
   )
 }
