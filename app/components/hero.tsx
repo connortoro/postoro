@@ -78,7 +78,7 @@ export default function Hero() {
         </div>
       </motion.div>
 
-      <h2 className="text-neutral-400 mt-[10rem] outline-1 outline-neutral-400 rounded-[10px] p-4 font-bold">⚠️ postoro is currently invite only ⚠️</h2>
+      <h2 className="text-neutral-300 mt-[10rem] outline-1 outline-neutral-400 rounded-[10px] p-4">⚠️ postoro is currently invite only ⚠️</h2>
     </div>
   )
 }
